@@ -18,6 +18,8 @@ defmodule AccountloginsWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :home)
+    get("/sign-out", AuthController, :signout)
+    get("/user-dashboard", AuthController, :userdashboard)
   end
 
   scope "/auth", AccountloginsWeb do

@@ -4,7 +4,6 @@ defmodule AccountloginsWeb.AuthController do
   alias Accountlogins.Users
   plug(Ueberauth)
 
-
   @doc """
   checking the connection if it is successfull
   """
@@ -23,12 +22,23 @@ defmodule AccountloginsWeb.AuthController do
         conn
         |> put_flash(:info, "Welcome to OAuth Authentication!")
         |> put_session(:user_id, user.id)
-        |> redirect(to: "/dev/dashboard")
+        |> redirect(to: "/")
 
       {:error, _changeset} ->
         conn
         |> put_flash(:error, "Something went wrong")
         |> redirect(to: "/")
     end
+  end
+
+  def signout(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> put_flash(:error, "You have successfully logged out.")
+    |> redirect(to: "/")
+  end
+
+  def userdashboard(conn, _params) do
+    conn |> put_layout(html: :business)
   end
 end
