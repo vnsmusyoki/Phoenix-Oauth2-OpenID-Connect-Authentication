@@ -78,11 +78,22 @@ config :phoenix, :plug_init_mode, :runtime
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
 
-
 config :ueberauth, Ueberauth,
-      providers: [
-        github: {Ueberauth.Strategy.Github, [default_scope: "user:email"]}
-      ]
+  providers: [
+    github: {Ueberauth.Strategy.Github, [default_scope: "user:email"]},
+    google: {Ueberauth.Strategy.Google, []}
+  ]
+
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
- client_id: "1605196485c97ff98032",
- client_secret: "5373fa3a1a6c14f6c052ad0ed1f5e4835b2a6e2a"
+  client_id: "1605196485c97ff98032",
+  client_secret: "5373fa3a1a6c14f6c052ad0ed1f5e4835b2a6e2a"
+
+config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+  client_id: "140970454737-vv6mt4v08ukf6qejqo6lcgh2tmenpk07.apps.googleusercontent.com",
+  client_secret: "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"
+
+config :accountlogins, Accountlogins.Repo,
+  ssl: [
+    verify: verify_peer,
+    cacertfile: "/etc/ssl/certs/ca-bundle.crt"
+  ]

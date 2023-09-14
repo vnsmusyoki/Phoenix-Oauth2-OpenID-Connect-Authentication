@@ -25,8 +25,18 @@ defmodule AccountloginsWeb.Router do
   scope "/auth", AccountloginsWeb do
     pipe_through(:browser)
 
-    get("/:provider", AuthController, :request)
-    get("/:provider/callback", AuthController, :callback)
+    # get("/:provider", AuthController, :request)
+    # get("/:provider/callback", AuthController, :callback)
+
+    get("/:provider", GoogleAuthController, :request)
+    get("/:provider/callback", GoogleAuthController, :callback)
+  end
+
+  scope "/g-auth", AccountloginsWeb do
+    pipe_through(:browser)
+
+    get("/:provider", GoogleAuthController, :request)
+    get("/:provider/callback", GoogleAuthController, :callback)
   end
 
   # Other scopes may use custom stacks.
