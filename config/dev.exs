@@ -52,6 +52,15 @@ config :accountlogins, AccountloginsWeb.Endpoint,
 # configured to run both http and https servers on
 # different ports.
 
+config :accountlogins, AccountloginsWeb.Endpoint,
+  http: [port: 4000],
+  https: [
+    port: 4001,
+    cipher_suite: :strong,
+    certfile: "priv/cert/selfsigned.pem",
+    keyfile: "priv/cert/selfsigned_key.pem"
+  ]
+
 # Watch static and templates for browser reloading.
 config :accountlogins, AccountloginsWeb.Endpoint,
   live_reload: [
@@ -92,8 +101,8 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: "140970454737-vv6mt4v08ukf6qejqo6lcgh2tmenpk07.apps.googleusercontent.com",
   client_secret: "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"
 
-config :accountlogins, Accountlogins.Repo,
-  ssl: [
-    verify: verify_peer,
-    cacertfile: "/etc/ssl/certs/ca-bundle.crt"
-  ]
+# config :accountlogins, Accountlogins.Repo,
+#   ssl: [
+#     verify: verify_peer,
+#     cacertfile: "/etc/ssl/certs/ca-bundle.crt"
+#   ]
